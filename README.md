@@ -9,6 +9,7 @@ During training, the only weights that are updated are those of the
 active group, while the others remain unchanged.
 
 ![mux_1_w](https://cloud.githubusercontent.com/assets/11634240/26721634/d8aed964-478c-11e7-930b-fef27eb36fe3.png)
+
 ![mux_2_w](https://cloud.githubusercontent.com/assets/11634240/26721706/22f5cfdc-478d-11e7-8eaa-51b6a3101328.png)
 
 The layer takes as input two tensors, namely the output of the previous
