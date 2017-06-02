@@ -1,4 +1,4 @@
-# Keras multiplexer
+# Keras Multiplexer
 This is a Keras layer that acts as a multiplexer for `Dense` layers (or
 any other layer that has 1D output).
 
@@ -50,7 +50,7 @@ With the `Multiplexer` layer, the same result can be achieved by simply
 feeding the action to the network as a separate input and updating only
 the associated weights (see example below for details on implementation).
 
-# Installation
+## Installation
 It seemed overkill to package this as a library, so just copy and paste
 `multiplexer.py` in your project to use it.
 **Note that the layer only works with `Keras>=2.0.0` and the Tensorflow
