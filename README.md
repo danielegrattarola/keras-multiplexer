@@ -34,12 +34,14 @@ In [the DQN paper by DeepMind](https://arxiv.org/abs/1312.5602), the
 Q-network is trained by setting the target to be equal to the network
 output on all actions except the one being updated, as follows:
 ```
-for sample in dataset:
+# I'm not using any particular notation
+for sample in batch:
     # ...
     target = q_network.predict(sample.state)
     target[sample.action] = sample.reward +
                             df * max(q_network.predict(sample.state_))
     # ...
+q_network.fit(states, targets)
 ```
 
 This requires an extra forward pass of the Q-network in order to compute
@@ -57,6 +59,8 @@ backend.**
 ## Example
 This example implements the NN represented in the images above.
 ```py
+from numpy import array
+from numpy.random import randn
 from keras.models import Model
 from keras.layers import Input, Dense
 from multiplexer import Multiplexer
@@ -86,7 +90,13 @@ model.predict([x, ctrl[2]])
 ```
 
 To adapt this example to the DQN case, we would use two different
-models (one for training and one for testing) respectively with output
-layers `output` and `hidden`, and the `Multiplexer` layer configured
-with `output_dim == 1` and `nb_ctrl_sig == 6`.
+models (`q_net_train` for training and `q_net_test` for testing) 
+respectively with output layers `output` and `hidden`, and the 
+`Multiplexer` layer configured with `output_dim == 1` and 
+`nb_ctrl_sig == 6`.  
+We could then use `sample.reward + df * max(q_net_test.predict(sample.state_))` 
+as single target, and pass `sample.state` and `sample.action` as input to
+`q_net_train`.
 
+## Acknowledgments
+Thanks to @carloderamo for porting the previous implementation to Keras 2.
