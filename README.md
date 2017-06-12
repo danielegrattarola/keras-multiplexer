@@ -34,7 +34,7 @@ In [the DQN paper by DeepMind](https://arxiv.org/abs/1312.5602), the
 Q-network is trained by setting the target to be equal to the network
 output on all actions except the one being updated, as follows:
 ```
-# I'm not using any particular notation
+# Not using any particular notation
 for sample in batch:
     # ...
     target = q_network.predict(sample.state)
@@ -77,23 +77,22 @@ model.compile('sgd', 'mse')
 
 # Data
 x = randn(3)  # Input has size 3
-ctrl = array([0, 1, 2])
 
 # Outputs the first two neurons of the Dense layer
-model.predict([x, ctrl[0]])
+model.predict([x, array[0]])
 
 # Outputs the middle two neurons of the Dense layer
-model.predict([x, ctrl[1]])
+model.predict([x, array[1]])
 
 # Outputs the last two neurons of the Dense layer
-model.predict([x, ctrl[2]])
+model.predict([x, array[2]])
 ```
 
 To adapt this example to the DQN case, we would use two different
 models (`q_net_train` for training and `q_net_test` for testing) 
 respectively with output layers `output` and `hidden`, and the 
 `Multiplexer` layer configured with `output_dim == 1` and 
-`nb_ctrl_sig == 6`.  
+`nb_ctrl_sig == nb_actions`.  
 We could then use `sample.reward + df * max(q_net_test.predict(sample.state_))` 
 as single target, and pass `sample.state` and `sample.action` as input to
 `q_net_train`.
