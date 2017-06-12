@@ -79,13 +79,13 @@ model.compile('sgd', 'mse')
 x = randn(3)  # Input has size 3
 
 # Outputs the first two neurons of the Dense layer
-model.predict([x, array[0]])
+model.predict([x, array([0])])
 
 # Outputs the middle two neurons of the Dense layer
-model.predict([x, array[1]])
+model.predict([x, array([1])])
 
 # Outputs the last two neurons of the Dense layer
-model.predict([x, array[2]])
+model.predict([x, array([2])])
 ```
 
 To adapt this example to the DQN case, we would use two different
