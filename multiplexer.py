@@ -172,3 +172,11 @@ class Multiplexer(Layer):
             [[1, 2], [11, 12]]
         '''
         return tf.reshape(reduced_output, [-1, output_size])
+
+    def get_config(self):
+        config = {
+            'output_dim': self.output_dim,
+            'nb_ctrl_sig': self.nb_ctrl_sig
+        }
+        base_config = super(Multiplexer, self).__init__(**kwargs)
+        return dict(list(base_config.items()) + list(config.items()))
