@@ -178,5 +178,5 @@ class Multiplexer(Layer):
             'output_dim': self.output_dim,
             'nb_ctrl_sig': self.nb_ctrl_sig
         }
-        base_config = super(Multiplexer, self).__init__(**kwargs)
+        base_config = super(Multiplexer, self).get_config()
         return dict(list(base_config.items()) + list(config.items()))
